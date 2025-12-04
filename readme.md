@@ -23,7 +23,7 @@ Ce projet consiste à concevoir une base de données relationnelle pour répondr
 | `insert_into_test.sql` | Script SQL pour insérer des données de test |
 | `get_hierarchy.sql` | Script SQL contenant la fonction `get_hierarchy` pour récupérer la hiérarchie des tâches |
 | `README.md` | Documentation du projet |
-| `ennonce.md` | Énoncé du projet fourni par M. Sana |
+| `ennonce.md` | Énoncé du projet fourni par M. Sana |.
 
 ---
 
