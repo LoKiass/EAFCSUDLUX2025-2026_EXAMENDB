@@ -17,13 +17,14 @@ Ce projet consiste à concevoir une base de données relationnelle pour répondr
 
 ## 📂 Structure des Fichiers
 
-| Fichier | Description |
-|---------|-------------|
-| `table_creation.sql` | Script SQL pour créer les tables de la base de données |
-| `insert_into_test.sql` | Script SQL pour insérer des données de test |
-| `get_hierarchy.sql` | Script SQL contenant la fonction `get_hierarchy` pour récupérer la hiérarchie des tâches |
-| `README.md` | Documentation du projet |
-| `ennonce.md` | Énoncé du projet fourni par M. Sana |.
+| Fichier                 | Description                                                                                                                                                            |
+|-------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `table_creation.sql`    | Script SQL pour créer les tables de la base de données                                                                                                                 |
+| `insert_into_test.sql`  | Script SQL pour insérer des données de test                                                                                                                            |
+| `get_hierarchy.sql`     | Script SQL contenant la fonction `get_hierarchy` pour récupérer la hiérarchie des tâches                                                                               |
+| `README.md`             | Documentation du projet                                                                                                                                                |
+| `ennonce.md`            | Énoncé du projet fourni par M. Sana                                                                                                                                    |.
+| `ajout_colaborateur.sql` | Script SQL contenant la procedure stocker `ajout_colaborateur` pour inserer dans la table colaborateur leurs nom, prenom, pseudo (Voir fiche téchnique) et le colab_id |
 
 ---
 
@@ -58,11 +59,8 @@ Des données de test sont fournies pour valider les fonctionnalités.
 ### 3. Fonction `get_hierarchy`
 Cette fonction permet de récupérer la hiérarchie des tâches (parent/enfant). 
 
-**Exemple d'utilisation :**
-
-```sql
-SELECT get_hierarchy([id_tâche]);
-```
+### 4. Fonction `ajout_colaborateur`
+Cette procédure stocjer permet d'inserer dans le tableau colaborateur des nom, prénom, peudonyme en fonction de l'ennoncé demander et le colab_id
 
 ---
 
@@ -111,6 +109,14 @@ racine AS (
 -- Utilisation de la fonction
 SELECT * FROM get_hierarchy(5)
 ```
+### Procédure stocker ajout_colaborateur 
+La procédure permet : 
+1. L'insertion initiale : Enregistre le nom et prénom du collaborateur dans la base
+2. Génération du pseudo : Crée un pseudo à partir des 2 premières lettres du nom et du prénom en minuscules
+3. Gestion des doublons : Vérifie l'existence de pseudos similaires et incrémente un compteur jusqu'à trouver un pseudo disponible (ex : duje01, duje02, etc.)
+Mise à jour : Affecte le pseudo unique au collaborateur nouvellement inséré
+
+
 
 ---
 

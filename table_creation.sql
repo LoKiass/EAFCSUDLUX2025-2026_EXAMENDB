@@ -15,6 +15,7 @@ CREATE TABLE Task_Colab(
     CONSTRAINT pk_table_3_id PRIMARY KEY (colab_id, task_id)
 );
 
+
 CREATE TABLE Task_Client (
     task_id int NOT NULL,
     client_id int NOT NULL,
@@ -28,6 +29,16 @@ CREATE TABLE Collaborateur (
     pseudo varchar,
     CONSTRAINT "pk_table_2_id" PRIMARY KEY (colab_id)
 );
+
+ALTER TABLE collaborateur
+DROP COLUMN colab_id
+
+ALTER TABLE collaborateur
+ADD COLUMN colab_id SERIAL;
+
+ALTER TABLE collaborateur
+ADD PRIMARY KEY (colab_id)
+
 
 CREATE TABLE Client (
     client_id int NOT NULL,
