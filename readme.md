@@ -1,4 +1,4 @@
-# Projet d'Examen : Administration Réseau et Gestion Avancée de Base de Données
+# Projet d'Examen : Administration et Gestion Avancée de Base de Données
 
 **Année académique 2025-2026**  
 **Enseignant : M. Sana**
