@@ -13,7 +13,7 @@ BEGIN
         VALUES (parent_id, nom_tache, ' ', temps_estimer);
 
     ELSE
-        INSERT INTO examen_matteodiseurs.public.task (nom_task, description_task, temp_tache)
+        INSERT INTO Task (nom_task, description_task, temp_tache)
         VALUES (nom_tache, ' ', temps_estimer);
     END IF;
 

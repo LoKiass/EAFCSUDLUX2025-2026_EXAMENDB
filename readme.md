@@ -17,14 +17,15 @@ Ce projet consiste à concevoir une base de données relationnelle pour répondr
 
 ## 📂 Structure des Fichiers
 
-| Fichier                 | Description                                                                                                                                                            |
-|-------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `table_creation.sql`    | Script SQL pour créer les tables de la base de données                                                                                                                 |
-| `insert_into_test.sql`  | Script SQL pour insérer des données de test                                                                                                                            |
-| `get_hierarchy.sql`     | Script SQL contenant la fonction `get_hierarchy` pour récupérer la hiérarchie des tâches                                                                               |
-| `README.md`             | Documentation du projet                                                                                                                                                |
-| `ennonce.md`            | Énoncé du projet fourni par M. Sana                                                                                                                                    |.
+| Fichier                  | Description                                                                                                                                                            |
+|--------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `table_creation.sql`     | Script SQL pour créer les tables de la base de données                                                                                                                 |
+| `insert_into_test.sql`   | Script SQL pour insérer des données de test                                                                                                                            |
+| `get_hierarchy.sql`      | Script SQL contenant la fonction `get_hierarchy` pour récupérer la hiérarchie des tâches                                                                               |
+| `README.md`              | Documentation du projet                                                                                                                                                |
+| `ennonce.md`             | Énoncé du projet fourni par M. Sana                                                                                                                                    |.
 | `ajout_colaborateur.sql` | Script SQL contenant la procedure stocker `ajout_colaborateur` pour inserer dans la table colaborateur leurs nom, prenom, pseudo (Voir fiche téchnique) et le colab_id |
+| `ajout_tache.sql`        | Script SQL contenant la procedure stocker `ajout_tache` pour inserer dans la table Task une nouvelle tache (voir fiche técnique)                                       |
 
 ---
 
@@ -137,8 +138,29 @@ IF counter <= 0 then
 INSERT INTO Collaborateur (nom, prenom, pseudo)
 VALUES (pnom, pprenom, final_pseudo);
 ```
+### Procedure stocker ajout_tache
+### Description
+Ajoute une nouvelle tâche dans la base de données avec support de hiérarchie parent-enfant.
+Paramètres
+```sql
+nom_tache (TEXT) - Nom de la tâche
+temps_estimer (INT) - Temps estimé
+tache_parent (TEXT) - Nom de la tâche parente (NULL pour tâche racine)
+```
 
+### Fonctionnement
 
+Si tache_parent est spécifié → recherche son ID et crée une sous-tâche
+Si tache_parent est NULL → crée une tâche racine
+
+Exemple
+```sql
+CALL ajout_tache('Développement', 40, NULL);
+```
+```sql
+-- Sous-tâche
+CALL ajout_tache('Codage API', 15, 'Développement');
+```
 
 ---
 
