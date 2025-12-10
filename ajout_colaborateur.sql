@@ -8,13 +8,10 @@ DECLARE
     final_pseudo text;
     counter int := 1; -- Permet de commencer à partir de 1
 BEGIN
-    -- Inserer les donner de base dans la base de donner et recuperer le pseudo temporaire sans chiffre
-    INSERT INTO Collaborateur (nom, prenom)
-    VALUES (pnom, pprenom);
+    -- Obtention du pseudo temporaire par la soustraction des chaque 2 premier charactere
     temp_pseudo = LOWER(SUBSTRING(pnom FROM 1 FOR 2) || SUBSTRING(pprenom FROM 1 FOR 2));
 
-
-    -- Permet de veriier si un collaborateur avec le même pseudo existe
+    -- Permet de verifier si un collaborateur avec le même pseudo existe
     WHILE EXISTS(
         SELECT 1
         FROM collaborateur
@@ -27,19 +24,17 @@ BEGIN
     IF counter <= 0 then
         final_pseudo = concat(temp_pseudo, '0', '1');
     ELSE
-        final_pseudo = concat(temp_pseudo, '0', CAST(counter AS VARCHAR));
+        final_pseudo = concat(temp_pseudo, '0', CAST(counter AS TEXT));
     end if;
 
-    -- Update de la row déjà existante
-    UPDATE collaborateur
-    SET pseudo = final_pseudo
-    WHERE colab_id = (SELECT MAX(colab_id) FROM Collaborateur);
 
-
+    INSERT INTO Collaborateur (nom, prenom, pseudo)
+    VALUES (pnom, pprenom, final_pseudo);
+    -- Suppresion de l'update afin d'inserer toutes les valeurs directement dans la table sans update
+    -- Ce qui permet une procédure stocker plus certaines sans transaction obligatoire
 END;
 $$LANGUAGE plpgsql;
 
-CALL ajout_colaborateur('Matteo', 'DAseurs');
-CALL ajout_colaborateur('Matteo', 'Diseurs');
-SELECT * FROM collaborateur;
+
+
 

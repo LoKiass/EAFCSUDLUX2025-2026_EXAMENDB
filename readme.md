@@ -111,10 +111,32 @@ SELECT * FROM get_hierarchy(5)
 ```
 ### Procédure stocker ajout_colaborateur 
 La procédure permet : 
-1. L'insertion initiale : Enregistre le nom et prénom du collaborateur dans la base
-2. Génération du pseudo : Crée un pseudo à partir des 2 premières lettres du nom et du prénom en minuscules
-3. Gestion des doublons : Vérifie l'existence de pseudos similaires et incrémente un compteur jusqu'à trouver un pseudo disponible (ex : duje01, duje02, etc.)
-Mise à jour : Affecte le pseudo unique au collaborateur nouvellement inséré
+1. De recuperer les 2 premier charactères du prenom/nom du collaborateur temporairement 
+```sql
+    temp_pseudo = LOWER(SUBSTRING(pnom FROM 1 FOR 2) || SUBSTRING(pprenom FROM 1 FOR 2));
+```
+2. Verifier si le pseudo actuel (seulement la soustraction des nom/prenom) existe déjà, si oui, ajouter 1 au compteur qui commence de base à 1 (madi01 -> madi02 -> madi03)
+```sql
+    WHILE EXISTS(
+        SELECT 1
+        FROM collaborateur
+        WHERE pseudo = temp_pseudo || '0' || counter
+    ) LOOP
+        counter := counter + 1;
+    END LOOP;
+```
+3. Inserer dans la base de données la résultat trouver et et définir le pseudo finale 
+```sql
+IF counter <= 0 then
+        final_pseudo = concat(temp_pseudo, '0', '1');
+    ELSE
+        final_pseudo = concat(temp_pseudo, '0', CAST(counter AS TEXT));
+    end if;
+
+
+INSERT INTO Collaborateur (nom, prenom, pseudo)
+VALUES (pnom, pprenom, final_pseudo);
+```
 
 
 

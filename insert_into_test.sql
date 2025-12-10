@@ -7,3 +7,8 @@ INSERT INTO Task (task_id, parent_id, description) VALUES (5, 0, '5');
 INSERT INTO Task (task_id, parent_id, description) VALUES (6, 5, '6');
 INSERT INTO Task (task_id, parent_id, description) VALUES (7, 5, '7');
 INSERT INTO Task (task_id, parent_id, description) VALUES (8, 7, '8');
+
+-- COMMANDE TEST POUR LA PROCEDURE STOCKER ajout_colaborateur
+CALL ajout_colaborateur('Matteo', 'DAseurs');
+CALL ajout_colaborateur('Matteo', 'Diseurs');
+SELECT * FROM collaborateur;
