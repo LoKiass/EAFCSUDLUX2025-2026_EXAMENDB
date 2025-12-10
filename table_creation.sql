@@ -1,12 +1,14 @@
 CREATE DATABASE examen_MATTEODISEURS;
 
 
-CREATE TABLE Task (
-    task_id int,
-    parent_id int NOT NULL,
-    description varchar NOT NULL,
-    CONSTRAINT pk_Task_task_id PRIMARY KEY (task_id, parent_id)
+CREATE TABLE Task ( -- MODFICATION APPORTER LE 10/12 POUR RESPECTER NOUVELLE STOR PROC
+    task_id SERIAL PRIMARY KEY,
+    parent_id int NULL REFERENCES Task(task_id),
+    nom_task TEXT,
+    description_task text,
+    temp_tache int
 );
+
 
 
 CREATE TABLE Task_Colab(
