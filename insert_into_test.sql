@@ -5,15 +5,18 @@ SELECT * FROM get_hierachy(1);
 CALL ajout_tache ('TACHE1', 11, '');
 CALL ajout_tache('TACHE2', 11, 'TACHE1');
 CALL ajout_tache('TACHE4', 11, 'TACHE1');
-CALL ajout_tache('TACHE3', 11, 'TACHE2');
+CALL ajout_tache('TACHE10', 11, 'TACHE2');
 
 CALL ajout_tache ('TACHE5', 11, '');
 CALL ajout_tache('TACHE6', 11, 'TACHE5');
 CALL ajout_tache('TACHE7', 11, 'TACHE5');
-CALL ajout_tache('TACHE8', 11, 'TACHE6');
+CALL ajout_tache('TACHE8', 11, 'TACHE8');
+CALL ajout_tache('TACHE91', 11, 'TACHE91'); -- NE DEVREZ PAS FONCTIONNER
+CALL ajout_tache('TACHE 81', -1, ''); -- NE DEVREZ PAS FONCTIONNER
 
 
-SELECT * FROM get_hierachy(8);
+
+SELECT * FROM get_hierachy(13);
 
 SELECT * FROM task;
 

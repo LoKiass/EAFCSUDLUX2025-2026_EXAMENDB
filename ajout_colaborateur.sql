@@ -32,6 +32,8 @@ BEGIN
     VALUES (pnom, pprenom, final_pseudo);
     -- Suppresion de l'update afin d'inserer toutes les valeurs directement dans la table sans update
     -- Ce qui permet une procédure stocker plus certaines sans transaction obligatoire
+
+    RAISE NOTICE 'Action effectuer avec succès ';
 END;
 $$LANGUAGE plpgsql;
 

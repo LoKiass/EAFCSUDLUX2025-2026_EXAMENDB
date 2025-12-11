@@ -1,6 +1,5 @@
 CREATE DATABASE examen_MATTEODISEURS;
 
-
 CREATE TABLE Task ( -- MODFICATION APPORTER LE 10/12 POUR RESPECTER NOUVELLE STOR PROC
     task_id SERIAL PRIMARY KEY,
     parent_id int NULL REFERENCES Task(task_id),
@@ -8,6 +7,10 @@ CREATE TABLE Task ( -- MODFICATION APPORTER LE 10/12 POUR RESPECTER NOUVELLE STO
     description_task text,
     temp_tache int
 );
+ALTER TABLE Task
+ADD CONSTRAINT unique_nomtask UNIQUE(nom_task); -- PERMET D'EVITER LE DUPLICATION DE PLUSIEURS NOM DE TACHE
+ALTER TABLE Task
+ALTER COLUMN nom_task SET NOT NULL; -- Un nom doit etre OBLIGATOIRE
 
 
 
@@ -16,10 +19,11 @@ CREATE TABLE Task_Colab(
     task_id int NOT NULL,
     CONSTRAINT pk_table_3_id PRIMARY KEY (colab_id, task_id)
 );
-
 -- Afin de pouvoir faire l'attribution de collaborateur
 ALTER TABLE Task_Colab
 ADD COLUMN roles_participent TEXT NOT NULL;
+
+
 
 
 CREATE TABLE Task_Client (
@@ -27,6 +31,8 @@ CREATE TABLE Task_Client (
     client_id int NOT NULL,
     CONSTRAINT pk_table_4_id PRIMARY KEY (task_id, client_id)
 );
+
+
 
 CREATE TABLE Collaborateur (
     colab_id int,
@@ -36,14 +42,13 @@ CREATE TABLE Collaborateur (
     CONSTRAINT "pk_table_2_id" PRIMARY KEY (colab_id)
 );
 
-ALTER TABLE collaborateur
-DROP COLUMN colab_id
-
-ALTER TABLE collaborateur
-ADD COLUMN colab_id SERIAL;
-
-ALTER TABLE collaborateur
-ADD PRIMARY KEY (colab_id)
+ALTER TABLE Collaborateur
+ALTER COLUMN nom SET NOT NULL,
+ALTER COLUMN prenom SET NOT NULL,
+ALTER COLUMN pseudo SET NOT NULL; -- Les case ne peuvent pas etre VIDE
+ALTER TABLE collaborateur DROP COLUMN colab_id;&
+ALTER TABLE collaborateur ADD COLUMN colab_id SERIAL;
+ALTER TABLE collaborateur ADD PRIMARY KEY (colab_id)
 
 
 CREATE TABLE Client (
@@ -52,6 +57,10 @@ CREATE TABLE Client (
     prenom varchar,
     CONSTRAINT pk_table_5_id PRIMARY KEY (client_id)
 );
+ALTER TABLE Client
+ALTER COLUMN nom SET NOT NULL ,
+ALTER COLUMN prenom SET NOT NULL; -- Les informations suivantes ne peuvent pas ETRE VIDE
+
 
 -- Foreign key constraints
 -- Schema: public
