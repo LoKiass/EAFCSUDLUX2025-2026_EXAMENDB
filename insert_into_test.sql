@@ -38,3 +38,8 @@ CALL attribution_colaborateur('mada01', 'TACHE3'); -- Ne fonctionne pas
 
 
 SELECT * FROM task_colab ORDER BY task_id;
+
+-- COMMANDE TEST POUR LA FONCTION temps_tache
+
+SELECT * FROM temps_tache('TACHE1', TRUE);
+SELECT * FROM task
