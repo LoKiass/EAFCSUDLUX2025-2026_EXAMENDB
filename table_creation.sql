@@ -17,6 +17,10 @@ CREATE TABLE Task_Colab(
     CONSTRAINT pk_table_3_id PRIMARY KEY (colab_id, task_id)
 );
 
+-- Afin de pouvoir faire l'attribution de collaborateur
+ALTER TABLE Task_Colab
+ADD COLUMN roles_participent TEXT NOT NULL;
+
 
 CREATE TABLE Task_Client (
     task_id int NOT NULL,
