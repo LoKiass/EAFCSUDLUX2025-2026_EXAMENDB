@@ -27,14 +27,14 @@ SELECT * FROM collaborateur;
 
 -- COMMANDE TEST POUR LA PROCEDURE STOCJER attribution_colaborateur
 CALL attribution_colaborateur('madi02', 'TACHE2'); -- Fonctionne
-CALL attribution_colaborateur('madi0', 'TACHE1'); -- Fonctionne pas
-CALL attribution_colaborateur('madi0', 'TACHE'); -- Fonctionne pas
-CALL attribution_colaborateur('madi0', 'TACHE1'); -- Fonctionne pas
+CALL attribution_colaborateur('madi0', 'TACHE1'); -- Ne fonctionne pas
+CALL attribution_colaborateur('madi0', 'TACHE'); -- Ne fonctionne pas
+CALL attribution_colaborateur('madi0', 'TACHE1'); -- Ne fonctionne pas
 
-CALL attribution_colaborateur('madi02', 'TACHE3'); -- Fonctionne pas
-CALL attribution_colaborateur('madi01', 'TACHE3'); -- Fonctionne pas
-CALL attribution_colaborateur('madi03', 'TACHE3'); -- Fonctionne pas
-CALL attribution_colaborateur('mada01', 'TACHE3'); -- Fonctionne pas
+CALL attribution_colaborateur('madi02', 'TACHE3'); -- Ne fonctionne pas
+CALL attribution_colaborateur('madi01', 'TACHE3'); -- Ne fonctionne pas
+CALL attribution_colaborateur('madi03', 'TACHE3'); -- Ne fonctionne pas
+CALL attribution_colaborateur('mada01', 'TACHE3'); -- Ne fonctionne pas
 
 
 SELECT * FROM task_colab ORDER BY task_id;

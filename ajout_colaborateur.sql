@@ -8,7 +8,7 @@ DECLARE
     final_pseudo text;
     counter int := 1; -- Permet de commencer à partir de 1
 BEGIN
-    -- Obtention du pseudo temporaire par la soustraction des chaque 2 premier charactere
+    -- Obtention du pseudo temporaire par la soustraction des chaque 2 premiers charactere
     temp_pseudo = LOWER(SUBSTRING(pnom FROM 1 FOR 2) || SUBSTRING(pprenom FROM 1 FOR 2));
 
     -- Permet de verifier si un collaborateur avec le même pseudo existe
