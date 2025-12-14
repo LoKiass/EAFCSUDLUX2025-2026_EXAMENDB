@@ -29,3 +29,5 @@ $$
         RETURN temp;
     END;
 $$ LANGUAGE PLPGSQL;
+
+SELECT * from task
