@@ -5,6 +5,11 @@ $$
         tid INT;
         cid int;
     BEGIN
+-- BLOC DEFENSIVE DE TEST DE L'ENTRER DE LA FONCTION
+    IF (check_for_text(nom_tache) IS FALSE) THEN RAISE EXCEPTION 'Le nom de la tache ne peu contenir uniquement des lettres'; END IF;
+
+
+-- Debut de la fonction
         IF EXISTS( -- Verifie l'existence d'une tache en fonction du nom et de du contenue de la table Task
             SELECT 1 FROM task WHERE nom_task = nom_tache
         ) THEN

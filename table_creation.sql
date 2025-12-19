@@ -44,7 +44,7 @@ CREATE TABLE Collaborateur (
 
 ALTER TABLE Collaborateur
 ALTER COLUMN nom SET NOT NULL,
-ALTER COLUMN prenom SET NOT NULL,
+ALTER COLUMN prenom SET NOT NULL, -- DANS LE CAS SUIVANT, NOT NULL NE VAS PAS INTERDIR l'INSERTION D'UN BLOC VIDE '' AUTREMENT DIT, il peut y avoir plein d'éspace et sa marcherais !
 ALTER COLUMN pseudo SET NOT NULL; -- Les case ne peuvent pas etre VIDE
 ALTER TABLE collaborateur DROP COLUMN colab_id;
 ALTER TABLE collaborateur ADD COLUMN colab_id SERIAL;

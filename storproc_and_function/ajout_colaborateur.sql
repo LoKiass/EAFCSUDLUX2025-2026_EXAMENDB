@@ -1,5 +1,3 @@
-DROP PROCEDURE ajout_colaborateur(nom text, prenom text);
-
 CREATE OR REPLACE PROCEDURE ajout_colaborateur(pnom text, pprenom text)
 AS
 $$
@@ -8,6 +6,13 @@ DECLARE
     final_pseudo text;
     counter int := 1; -- Permet de commencer à partir de 1
 BEGIN
+-- Bloc de test defensif de l'entrer de la fonction ajout_colaborateur
+    IF pnom IS NULL OR TRIM(pnom) = '' THEN RAISE EXCEPTION 'Vous devez inseré un nom au pre-alable'; END IF;
+    IF pprenom IS NULL OR TRIM(pprenom) = '' THEN RAISE EXCEPTION  'Vous devez inserer un prenom au pre-alable'; END IF;
+    IF (check_for_text(pnom) IS FALSE) THEN RAISE EXCEPTION  'Le nom doit contenir uniquement des lettre et accent'; END IF;
+    IF (check_for_text(pprenom) IS FALSE) THEN RAISE EXCEPTION 'Le prenom doit contenir uniquement des lettre et accent'; END IF;
+
+-- Debut de la fonction
     -- Obtention du pseudo temporaire par la soustraction des chaque 2 premiers charactere
     temp_pseudo = LOWER(SUBSTRING(pnom FROM 1 FOR 2) || SUBSTRING(pprenom FROM 1 FOR 2));
 

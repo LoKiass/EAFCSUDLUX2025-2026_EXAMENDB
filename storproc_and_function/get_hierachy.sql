@@ -9,6 +9,10 @@ RETURNS TABLE(
 AS
 $$
 BEGIN
+-- Bloc de test defensif du code
+    IF NOT EXISTS(SELECT 1 FROM task WHERE ftask_id = task_id) THEN RAISE EXCEPTION 'La tache a pas été trouve dans la base de donné';END IF ;
+
+-- Debut de la fonction
     RETURN QUERY
     WITH RECURSIVE
     -- Recuperer la racine

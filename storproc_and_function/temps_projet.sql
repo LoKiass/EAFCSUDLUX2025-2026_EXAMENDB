@@ -5,6 +5,11 @@ $$
     DECLARE
         temp int;
     BEGIN
+-- Bloc de test defensif du code
+    IF (check_for_text(nom_temps) IS FALSE) THEN RAISE EXCEPTION 'Le nom du temps doit uniquement contenir des lettres'; END IF;
+    IF (nom_temps IS NULL OR TRIM(nom_temps) = '') THEN RAISE EXCEPTION 'Vous devez à minimum fournir le nom du temps que vous voulez recuperer'; END IF;
+    IF NOT EXISTS(SELECT 1 FROM task WHERE nom_temps = nom_task) THEN RAISE EXCEPTION 'La task fournite existe pas'; END IF;
+
         IF total = false THEN
             -- Si false, on récupère uniquement le temps d'une seule tâche
             SELECT temp_tache FROM TASK AS T WHERE nom_temps = t.nom_task INTO temp;
